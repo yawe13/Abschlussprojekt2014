@@ -9,9 +9,9 @@
   <name>Projekt2014</name>
   
   <modules>
+    <module>LoginService</module>
     <module>CommentService</module>
     <module>MusicService</module>
-    <module>LoginService</module>
   </modules>
   
   <build>
