@@ -8,8 +8,8 @@
   <name>Projekt2014</name>
   <modules>
     <module>CommentService</module>
-    <module>LoginService</module>
     <module>MusicService</module>
+    <module>LoginService</module>
   </modules>
   
   <build>
@@ -28,5 +28,28 @@
             </plugins>
         </pluginManagement>
     </build>
+    
+      <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>fh.ostfalia.projekt2014</groupId>
+        <artifactId>LoginService</artifactId>
+        <version>${project.version}</version>
+          <type>war</type>
+      </dependency>
+      <dependency>
+        <groupId>fh.ostfalia.projekt2014</groupId>
+        <artifactId>MusicService</artifactId>
+        <version>${project.version}</version>
+          <type>war</type>
+      </dependency>
+      <dependency>
+        <groupId>fh.ostfalia.projekt2014</groupId>
+        <artifactId>CommentService</artifactId>
+        <version>${project.version}</version>
+          <type>war</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   
 </project>
