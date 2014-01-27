@@ -28,6 +28,12 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>fh.ostfalia.projekt2014</groupId>
+            <artifactId>Projekt2014</artifactId>
+             <version>1.0-SNAPSHOT</version>
+             <type>pom</type>
+        </dependency>
     </dependencies>
 
     <build>
