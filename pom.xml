@@ -7,13 +7,13 @@
   <packaging>pom</packaging>
   <name>Projekt2014</name>
   <modules>
-    <module>MusicService</module>
-    <module>CommentService</module>
-    <module>LoginService</module>
+    <module>../MusicService</module>
+    <module>../CommentService</module>
+    <module>../LoginService</module>
   </modules>
   
   <build>
-        <finalName>mygourmet</finalName>
+        <finalName>Projekt2014</finalName>
         <defaultGoal>install</defaultGoal>
         <pluginManagement>
             <plugins>
