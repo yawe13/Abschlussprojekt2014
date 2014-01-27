@@ -7,8 +7,26 @@
   <packaging>pom</packaging>
   <name>Projekt2014</name>
   <modules>
-    <module>../MusicService</module>
-    <module>../CommentService</module>
-    <module>../LoginService</module>
+    <module>MusicService</module>
+    <module>CommentService</module>
+    <module>LoginService</module>
   </modules>
+  
+  <build>
+        <finalName>mygourmet</finalName>
+        <defaultGoal>install</defaultGoal>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+  
 </project>
