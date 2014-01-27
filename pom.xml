@@ -7,9 +7,9 @@
   <packaging>pom</packaging>
   <name>Projekt2014</name>
   <modules>
-    <module>MusicService</module>
     <module>CommentService</module>
     <module>LoginService</module>
+    <module>MusicService</module>
   </modules>
   
   <build>
