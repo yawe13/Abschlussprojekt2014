@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>fh.ostfalia.projekt2014</groupId>
+  <artifactId>MAIN_LOGINMODUL</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>MAIN_LOGINMODUL</name>
+  <modules>
+    <module>MAIN_LOGINMODUL-ear</module>
+    <module>MAIN_LOGINMODUL-web</module>
+    <module>MAIN_LOGINMODUL-ejb</module>
+    <module>../MUSICSERVICE</module>
+    <module>../COMMENTSERVICE</module>
+    <module>../LOADBALANCER</module>
+  </modules>
+</project>
