@@ -10,9 +10,9 @@
     <module>MAINPROJECT-ear</module>
     <module>MAINPROJECT-web</module>
     <module>MAINPROJECT-ejb</module>
-    <module>../COMMENTSERVICE</module>
-    <module>../LOADBALANCER</module>
-    <module>../MUSICSERVICE</module>
+    <module>COMMENTSERVICE</module>
+    <module>LOADBALANCER</module>
+    <module>MUSICSERVICE</module>
   </modules>
   
   
