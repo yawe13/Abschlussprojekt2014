@@ -27,6 +27,16 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        
+        
+        <dependency>
+            <groupId>org.farng.mp3</groupId>
+            <artifactId>jid3lib</artifactId>
+            <version>0.5.4</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jid3lib-0.5.4.jar</systemPath>
+        </dependency>
+        
     </dependencies>
 
     <build>
