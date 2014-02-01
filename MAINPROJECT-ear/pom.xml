@@ -58,16 +58,19 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>MUSICSERVICE</artifactId>
             <version>${project.version}</version>
+            <type>war</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>COMMENTSERVICE</artifactId>
             <version>${project.version}</version>
+            <type>war</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>LOADBALANCER</artifactId>
             <version>${project.version}</version>
+            <type>war</type>
         </dependency>
     </dependencies>
 </project>
