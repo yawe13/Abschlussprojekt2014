@@ -16,11 +16,13 @@
             <h:outputLabel for="passwordInput">
                 #{bundle['login.password']}:
             </h:outputLabel>
+            
             <h:inputSecret id="passwordInput" value="#{loginBean.password}" 
                            required="true" />
             <br />
             <h:commandButton value="${bundle['login.submit']}" 
                              action="#{loginBean.login}" />
+            <a href="ClientServlet">Clientliste</a>
         </h:form>
     </h:body>
 </html>
