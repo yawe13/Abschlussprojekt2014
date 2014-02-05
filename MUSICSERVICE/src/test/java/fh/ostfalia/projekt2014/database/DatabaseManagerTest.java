@@ -46,8 +46,9 @@ public class DatabaseManagerTest {
     @Test
     public void testCreateConnection() {
         System.out.println("createConnection");
-        DatabaseManager instance = new DatabaseManager();
+        DatabaseManager instance = DatabaseManager.getInstance();
         instance.createConnection();
+        
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
