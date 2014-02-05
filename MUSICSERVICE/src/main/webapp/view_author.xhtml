@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Title</title>
+    </h:head>
+    <h:body>
+        <h3>Author usw.</h3>
+        <h:form>
+            Titel des Author<h:commandLink action="#{Test.test()}" value="download"/>
+            <br/>
+            <h:inputTextarea rows="5" />
+            <br/>
+            <h:commandButton action="#{Test.test()}" value="Post Comment"/>    
+            <br/>
+        </h:form>
+        <h:link outcome="index" value="Home"/>
+    </h:body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Music</title>
+    </h:head>
+    <h:body>
+        <h1>Musictitles</h1>
+        <f:view>
+            <table border="1">
+                <tr>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>View</th>
+                    <th>Download</th>
+                </tr>
+            </table>
+            <h:link outcome="view_mp3" value="View Example Mp3"/>
+            <br/>
+            <h:link outcome="view_author" value="View Example Author"/>
+            <br/>
+            <h:link outcome="index" value="Home"/>          
+        </f:view>
+    </h:body>
+</html>
