@@ -31,11 +31,22 @@ import java.util.logging.Logger;
 public class DatabaseManager {
     private static Connection con = null;
     private PreparedStatement pstmt = null;
-    private Statement stmt;
-    private ResultSet rs;
     private static Properties prop = new Properties();
     private FileInputStream fis = null;
-
+    
+    private static DatabaseManager instance = null;
+    
+    private DatabaseManager(){
+        
+    }
+    
+    public static DatabaseManager getInstance() {
+        if (instance == null) {
+            instance = new DatabaseManager();
+        }
+        return instance;
+    }
+    
     public void createConnection() {
         try {
             // MySQL Treiber laden
@@ -55,6 +66,7 @@ public class DatabaseManager {
         try {
             //Verbindung herstellen
             con = DriverManager.getConnection("jdbc:"+prop.getProperty("mysqlServer")+"/?user=" +prop.getProperty("user")+"&password="+prop.getProperty("password")+"&allowMultiQueries=true");                          
+            
             //Datenbankstruktur erstellen, falls noch nicht vorhanden
             createTableIfNotExists();
 
@@ -63,8 +75,7 @@ public class DatabaseManager {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-        
+       
     private void createTableIfNotExists(){
         try {   
             pstmt = con.prepareStatement("CREATE DATABASE IF NOT EXISTS "+prop.getProperty("dbName"));
@@ -85,26 +96,6 @@ public class DatabaseManager {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    /**
-     * Führt eine Abfrage aus
-     *
-     * @param query
-     * @return
-     */
-    public ResultSet executeQueryStatement(String query) {
-        try {
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(query);
-        } catch (SQLException ex) {
-
-            System.out.println("Es ist ein Fehler augetreten.");
-            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return rs;
-    }
-
     /**
      * Datenbankverbindung schließen
      */
