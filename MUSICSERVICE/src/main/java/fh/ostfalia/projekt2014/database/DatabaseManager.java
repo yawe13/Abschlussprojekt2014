@@ -9,7 +9,6 @@ package fh.ostfalia.projekt2014.database;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,12 +28,15 @@ import java.util.logging.Logger;
  * @author Mettbrötchen
  */
 public class DatabaseManager {
+    private static DatabaseManager instance = null;
     private static Connection con = null;
     private PreparedStatement pstmt = null;
+    private Statement stmt = null;
+    private ResultSet rs = null;
+    
     private static Properties prop = new Properties();
     private FileInputStream fis = null;
     
-    private static DatabaseManager instance = null;
     
     private DatabaseManager(){
         
@@ -75,7 +77,20 @@ public class DatabaseManager {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-       
+    
+    
+    public ResultSet executeQueryStatement(String query) {
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(query);
+        } catch (SQLException ex) {
+
+            System.out.println("Beim Ausführen des SQL Statements ist ein Fehler aufgetreten.");
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+    } 
+    
     private void createTableIfNotExists(){
         try {   
             pstmt = con.prepareStatement("CREATE DATABASE IF NOT EXISTS "+prop.getProperty("dbName"));
