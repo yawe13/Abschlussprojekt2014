@@ -16,24 +16,27 @@ import javax.servlet.ServletContextListener;
  * @author Mettbrötchen
  */
 public class InitServlet implements ServletContextListener {
-    private ServletContext context;
    
     
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        context = sce.getServletContext();
-        System.out.println(context.getContextPath());
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Context Created");  
         
-        DatabaseManager instance = DatabaseManager.getInstance();
+        ServletContext sc = sce.getServletContext();
+        
+    	String url = sc.getInitParameter("url");
+    	String user_name = sc.getInitParameter("user_name");
+    	String password = sc.getInitParameter("password");
+    	String database = sc.getInitParameter("database");
+        DatabaseManager instance = DatabaseManager.getInstance(url, user_name, password, database);
         instance.createConnection();
 
+        
 
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("ENDE!!!!!!!!!!!!!!!!!!!!!");
     }
     
 }

@@ -9,7 +9,6 @@ package fh.ostfalia.projekt2014.database;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,18 +32,24 @@ public class DatabaseManager {
     private PreparedStatement pstmt = null;
     private Statement stmt = null;
     private ResultSet rs = null;
+    public String url, user_name, password, database;
     
     private static Properties prop = new Properties();
     private FileInputStream fis = null;
     
     
-    private DatabaseManager(){
+    private DatabaseManager(String url,String user_name,String password,String database){
+        this.url = url;
+        this.user_name= user_name;
+        this.password= password;
+        this.database= database;
         
     }
     
-    public static DatabaseManager getInstance() {
+    public static DatabaseManager getInstance(String url,String user_name,String password,String database) {
         if (instance == null) {
-            instance = new DatabaseManager();
+            instance = new DatabaseManager(url,user_name,password,database);
+          
         }
         return instance;
     }
@@ -59,15 +64,10 @@ public class DatabaseManager {
             e.printStackTrace();
         }
 
-        try {
-            // config.ini Datei laden
-            prop.load(new FileInputStream("config.ini"));
-        } catch (IOException ex) {
-            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
         try {
             //Verbindung herstellen
-            con = DriverManager.getConnection("jdbc:"+prop.getProperty("mysqlServer")+"/?user=" +prop.getProperty("user")+"&password="+prop.getProperty("password")+"&allowMultiQueries=true");                          
+            con = DriverManager.getConnection(url+"/?user=" +user_name+"&password="+password+"&allowMultiQueries=true");                          
             
             //Datenbankstruktur erstellen, falls noch nicht vorhanden
             createTableIfNotExists();
@@ -93,9 +93,9 @@ public class DatabaseManager {
     
     private void createTableIfNotExists(){
         try {   
-            pstmt = con.prepareStatement("CREATE DATABASE IF NOT EXISTS "+prop.getProperty("dbName"));
+            pstmt = con.prepareStatement("CREATE DATABASE IF NOT EXISTS "+database);
             pstmt.execute();
-            con.setCatalog(prop.getProperty("dbName"));
+            con.setCatalog(database);
             
             pstmt = con.prepareStatement("CREATE TABLE IF NOT EXISTS mp3_files ("
                                         + "mp3_id int(11) NOT NULL AUTO_INCREMENT,"

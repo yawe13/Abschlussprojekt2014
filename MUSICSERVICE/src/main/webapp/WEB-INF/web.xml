@@ -35,4 +35,20 @@
     <listener>
         <listener-class>fh.ostfalia.projekt2014.musicservice.InitServlet</listener-class>
     </listener>
+    <context-param>
+        <param-name>url</param-name>
+        <param-value>jdbc:mysql://localhost</param-value>
+    </context-param>
+    <context-param>
+        <param-name>database</param-name>
+        <param-value>webservice</param-value>
+    </context-param>
+    <context-param>
+        <param-name>user_name</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value></param-value>
+    </context-param>
 </web-app>
