@@ -52,9 +52,9 @@ public class Id3Tag {
             if (file.isFile()) {
                 try {
                     Mp3 mp3 = new Mp3();
-                    mp3.setFile(file);
-                    mp3.setArtist(this.readArtist(file));
-                    mp3.setTitle(this.readTitle(file));
+                    //mp3.setMp3_file(file);
+                    mp3.setMp3_artist(this.readArtist(file));
+                    mp3.setMp3_title(this.readTitle(file));
                     list.add(mp3);
                 } catch (TagException ex) {
                     Logger.getLogger(Id3Tag.class.getName()).log(Level.SEVERE, null, ex);

@@ -13,5 +13,10 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
    
+    <managed-bean>
+        <managed-bean-name>Mp3</managed-bean-name>
+        <managed-bean-class>fh.ostfalia.projekt2014.dao.Mp3Dao</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
    
 </faces-config>

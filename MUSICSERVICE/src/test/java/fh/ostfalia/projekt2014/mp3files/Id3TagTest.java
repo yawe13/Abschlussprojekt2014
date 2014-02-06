@@ -31,19 +31,19 @@ public class Id3TagTest {
     public static void setUpClass() {
         
         file1 = new Mp3();
-        file1.setFile(new File(".test\\testfiles\\Auquid_-_In_The_Rain.mp3"));
-        file1.setTitle("In The Rain");
-        file1.setArtist("Auquid");
+       // file1.setMp3_file(new File(".test\\testfiles\\Auquid_-_In_The_Rain.mp3"));
+        file1.setMp3_title("In The Rain");
+        file1.setMp3_artist("Auquid");
         
         file2 = new Mp3();
-        file2.setFile(new File(".test\\testfiles\\Defnael_-_Conquest_Of_The_West_-_Conquete_de_l_Ouest.mp3"));
-        file2.setTitle("Defnael");
-        file2.setArtist("Conquest Of The West Conquete");
+       // file2.setMp3_file(new File(".test\\testfiles\\Defnael_-_Conquest_Of_The_West_-_Conquete_de_l_Ouest.mp3"));
+        file2.setMp3_title("Defnael");
+        file2.setMp3_artist("Conquest Of The West Conquete");
         
         file3 = new Mp3();
-        file3.setFile(new File(".test\\testfiles\\Doxent_Zsigmond_-_Journey.mp3"));
-        file3.setTitle("Doxent Zsigmond");
-        file3.setArtist("Journey");
+      //  file3.setMp3_file(new File(".test\\testfiles\\Doxent_Zsigmond_-_Journey.mp3"));
+        file3.setMp3_title("Doxent Zsigmond");
+        file3.setMp3_artist("Journey");
         
  
     }
@@ -76,9 +76,9 @@ public class Id3TagTest {
         
         ArrayList<Mp3> result = instance.initFiles(readFiles);
         for(int i = 0; i >= expResult.size(); i++){
-            assertEquals(expResult.get(i).getFile(), result.get(i).getFile());
-            assertEquals(expResult.get(i).getTitle(), result.get(i).getTitle());
-            assertEquals(expResult.get(i).getArtist(), result.get(i).getArtist());
+            assertEquals(expResult.get(i).getMp3_file(), result.get(i).getMp3_file());
+            assertEquals(expResult.get(i).getMp3_title(), result.get(i).getMp3_title());
+            assertEquals(expResult.get(i).getMp3_artist(), result.get(i).getMp3_artist());
         }
     }
 
