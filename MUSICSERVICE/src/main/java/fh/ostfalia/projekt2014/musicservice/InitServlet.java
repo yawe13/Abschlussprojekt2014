@@ -20,7 +20,7 @@ public class InitServlet implements ServletContextListener {
     
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        
+  /*      
         ServletContext sc = sce.getServletContext();
         
     	String url = sc.getInitParameter("url");
@@ -29,7 +29,7 @@ public class InitServlet implements ServletContextListener {
     	String database = sc.getInitParameter("database");
         DatabaseManager instance = DatabaseManager.getInstance(url, user_name, password, database);
         instance.createConnection();
-
+*/
         
 
     }
