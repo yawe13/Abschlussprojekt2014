@@ -6,7 +6,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:jsp="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <title>Music</title>
     </h:head>
@@ -21,9 +22,17 @@ and open the template in the editor.
                     <th>Download</th>
                 </tr>
                 <tr>
-                    <th>Title= #{Mp3.getMp3(1).mp3_title}</th>
-                    
+                    <jsp:forEach items="${Mp3.allMp3}" var="mp3">
+                        <tr>
+                          <td>${mp3.mp3_title}</td>
+                          <td>${mp3.mp3_artist}</td>
+                          <td><h:link outcome="view_mp3" value="Show"><f:param name="id" value="${mp3.mp3_id}"/></h:link></td>
+                          <td><h:link value="download"/></td>
+                        </tr>
+                        
+                    </jsp:forEach>
                 </tr>
+                
             </table>
             <h:link outcome="view_mp3" value="View Example Mp3"/>
             <br/>

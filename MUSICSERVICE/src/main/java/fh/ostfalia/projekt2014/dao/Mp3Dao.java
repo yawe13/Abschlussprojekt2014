@@ -41,5 +41,10 @@ public class Mp3Dao implements Mp3DaoLocal {
         return em.createNamedQuery("Mp3.getAll").getResultList();
     }
   
+    public long getId(){
+        return em.;
+        
+    }
+    
 
 }
