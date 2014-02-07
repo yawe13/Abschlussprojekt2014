@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -24,14 +25,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-@NamedQueries({@NamedQuery(name="Mp3.getAll",query="SELECT e FROM Mp3 e")})
+@NamedQueries({@NamedQuery(name="Mp3.getAll", query="SELECT e FROM Mp3 e")})
 public class Mp3 implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int mp3_id;
     @Column
-    private File mp3_file;
+    @Lob
+    private byte[] mp3_file;
     @Column
     private String mp3_title;
     @Column
@@ -48,15 +50,14 @@ public class Mp3 implements Serializable {
         this.mp3_id = mp3_id;
     }
 
-    public File getMp3_file() {
+    public byte[] getMp3_file() {
         return mp3_file;
     }
 
-    public void setMp3_file(File mp3_file) {
+    public void setMp3_file(byte[] mp3_file) {
         this.mp3_file = mp3_file;
     }
-
-
+ 
     public String getMp3_title() {
         return mp3_title;
     }
