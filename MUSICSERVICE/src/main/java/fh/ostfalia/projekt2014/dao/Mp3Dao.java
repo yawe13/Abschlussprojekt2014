@@ -6,11 +6,13 @@
 
 package fh.ostfalia.projekt2014.dao;
 
-import fh.ostfalia.projekt2014.mp3files.Mp3;
+import fh.ostfalia.projekt2014.mp3files.Mp3Bean;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 
 /**
  *
@@ -22,7 +24,7 @@ public class Mp3Dao implements Mp3DaoLocal {
     private EntityManager em;
 
     @Override
-    public void addMp3(Mp3 mp3) {
+    public void addMp3(Mp3Bean mp3) {
       em.persist(mp3);
     }
 
@@ -32,16 +34,40 @@ public class Mp3Dao implements Mp3DaoLocal {
     }
 
     @Override
-    public Mp3 getMp3(int mp3_id) {
-        return em.find(Mp3.class, mp3_id);
+    public Mp3Bean getMp3(int mp3_id) {
+        return em.find(Mp3Bean.class, mp3_id);
     }
-
+    
+    public int getMp3_artist(int mp3_id) {
+        return em.find(Mp3Bean.class, mp3_id).getMp3_id();
+    }
+    
+    public String getMp3_title(int mp3_id) {
+        return em.find(Mp3Bean.class, mp3_id).getMp3_title();
+    }
+    
+    public byte[] getMp3_file(int mp3_id) {
+        return em.find(Mp3Bean.class, mp3_id).getMp3_file();
+    }
+       
     @Override
-    public List<Mp3> getAllMp3() {
+    public List<Mp3Bean> getAllMp3() {
         return em.createNamedQuery("Mp3.getAll").getResultList();
     }
-  
-
     
+   // Methoden zum Extrahieren der Id aus der URI, um Mp3 zu identifizieren 
+    
+   private String passedParameter;
 
+    public String getPassedParameter() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        this.passedParameter = (String) facesContext.getExternalContext().
+                getRequestParameterMap().get("id");
+        return this.passedParameter;
+    }
+
+    public void setPassedParameter(String passedParameter) {
+        this.passedParameter = passedParameter;
+    }
+    
 }

@@ -42,18 +42,18 @@ public class Id3Tag {
         return mp3file.getID3v1Tag().getSongTitle();
     }
 
-    public ArrayList<Mp3> initFiles(int readFiles) {
+    public ArrayList<Mp3Bean> initFiles(int readFiles) {
         
-        ArrayList<Mp3> list = new ArrayList();
+        ArrayList<Mp3Bean> list = new ArrayList();
         File[] fileList = uploadDir.listFiles();
         
         for (int i = 0; i <= readFiles-1; i++) {
             File file = fileList[i].getAbsoluteFile();
             if (file.isFile()) {
                 try {
-                    Mp3 mp3 = new Mp3();
+                    Mp3Bean mp3 = new Mp3Bean();
                     //mp3.setMp3_file(file);
-                    mp3.setMp3_artist(this.readArtist(file));
+                    //mp3.setMp3_artist(this.readArtist(file));
                     mp3.setMp3_title(this.readTitle(file));
                     list.add(mp3);
                 } catch (TagException ex) {

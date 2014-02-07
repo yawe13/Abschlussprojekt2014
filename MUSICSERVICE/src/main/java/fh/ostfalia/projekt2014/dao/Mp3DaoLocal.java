@@ -7,7 +7,7 @@
 package fh.ostfalia.projekt2014.dao;
 
 import javax.ejb.Local;
-import fh.ostfalia.projekt2014.mp3files.Mp3;
+import fh.ostfalia.projekt2014.mp3files.Mp3Bean;
 import java.util.List;
 /**
  *
@@ -15,11 +15,11 @@ import java.util.List;
  */
 @Local
 public interface Mp3DaoLocal {
-    void addMp3(Mp3 mp3);
+    void addMp3(Mp3Bean mp3);
     
     void deleteMp3(int mp3_id);
     
-    Mp3 getMp3(int mp3_id);
+    Mp3Bean getMp3(int mp3_id);
 
-    List<Mp3> getAllMp3();
+    List<Mp3Bean> getAllMp3();
 }

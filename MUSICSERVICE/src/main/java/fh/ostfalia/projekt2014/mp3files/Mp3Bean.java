@@ -6,15 +6,16 @@
 
 package fh.ostfalia.projekt2014.mp3files;
 
-import java.io.File;
+
 import java.io.Serializable;
-import java.sql.Blob;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -24,22 +25,25 @@ import javax.persistence.Table;
  * @author Mettbrötchen
  */
 @Entity
-@Table
+@Table (name="Mp3")
 @NamedQueries({@NamedQuery(name="Mp3.getAll", query="SELECT e FROM Mp3 e")})
-public class Mp3 implements Serializable {
+
+public class Mp3Bean implements Serializable {
     @Id
-    @Column
+    @Column (name="mp3_id")
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int mp3_id;
-    @Column
+    @Column (name="mp3_file")
     @Lob
     private byte[] mp3_file;
-    @Column
+    @Column (name="mp3_title")
     private String mp3_title;
-    @Column
-    private String mp3_artist;
-
-    public Mp3() {
+    @ManyToOne
+    @JoinColumn(name="mp3_artist_id")
+    private Mp3ArtistBean mp3_artist_id;
+   
+    
+    public Mp3Bean() {
     }
 
     public int getMp3_id() {
@@ -66,11 +70,11 @@ public class Mp3 implements Serializable {
         this.mp3_title = mp3_title;
     }
 
-    public String getMp3_artist() {
-        return mp3_artist;
+    public Mp3ArtistBean getMp3_artist_id() {
+        return mp3_artist_id;
     }
 
-    public void setMp3_artist(String mp3_artist) {
-        this.mp3_artist = mp3_artist;
+    public void setMp3_artist_id(Mp3ArtistBean mp3_artist_id) {
+        this.mp3_artist_id = mp3_artist_id;
     }
 }
