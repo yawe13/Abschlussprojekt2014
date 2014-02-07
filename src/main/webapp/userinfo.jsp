@@ -21,16 +21,16 @@
                     <td><input type="text" name="userId" value="${user.userId}" /></td>
                 </tr>
                 <tr>
-                    <td>First Name</td>
-                    <td><input type="text" name="firstname" value="${user.firstname}" /></td>
+                    <td>Username</td>
+                    <td><input type="text" name="username" value="${user.username}" /></td>
                 </tr>
                 <tr>
-                    <td>Last Name</td>
-                    <td><input type="text" name="lastname" value="${user.lastname}" /></td>
+                    <td>Password</td>
+                    <td><input type="text" name="password" value="${user.password}" /></td>
                 </tr>
                 <tr>
-                    <td>Year Level</td>
-                    <td><input type="text" name="yearLevel" value="${user.yearLevel}" /></td>
+                    <td>Role</td>
+                    <td><input type="text" name="role" value="${user.role}" /></td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -45,15 +45,15 @@
         <br>
         <table border="1">
             <th>User ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Year Level</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Role</th>
             <c:forEach items="${allUsers}" var="user">
                 <tr>
                     <td>${user.userId}</td>
-                    <td>${user.firstname}</td>
-                    <td>${user.lastname}</td>
-                    <td>${user.yearLevel}</td>
+                    <td>${user.username}</td>
+                    <td>${user.password}</td>
+                    <td>${user.role}</td>
                 </tr>
             </c:forEach>
         </table>  

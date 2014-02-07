@@ -5,6 +5,9 @@
 package fh.ostfalia.projekt2014.model;
 
 import java.io.Serializable;
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,11 +30,11 @@ public class User implements Serializable{
     @Column
     private int userId;
     @Column
-    private String firstname;
+    private String username;
     @Column
-    private String lastname;
+    private String password;
     @Column
-    private int yearLevel;
+    private String role;
 
     public int getUserId() {
         return userId;
@@ -41,36 +44,42 @@ public class User implements Serializable{
         this.userId = userId;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public int getYearLevel() {
-        return yearLevel;
+    public String getRole() {
+        return role;
     }
 
-    public void setYearLevel(int yearLevel) {
-        this.yearLevel = yearLevel;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public User(int userId, String firstname, String lastname, int yearLevel) {
+ 
+
+    public User(int userId, String username, String password, String role) {
         this.userId = userId;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.yearLevel = yearLevel;
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
+    
+    
+
+
     
     public User(){}
 }

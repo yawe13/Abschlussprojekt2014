@@ -31,14 +31,12 @@ public class UseLloginServlet extends HttpServlet {
         if(userIdStr!=null && !userIdStr.equals("")){
             userId=Integer.parseInt(userIdStr);    
         }
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String yearLevelStr = request.getParameter("yearLevel");
-        int yearLevel=0;
-        if(yearLevelStr!=null && !yearLevelStr.equals("")){
-            yearLevel=Integer.parseInt(yearLevelStr);
-        }
-        User user = new User(userId, firstname, lastname, yearLevel);
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String role = request.getParameter("role");
+      
+     
+        User user = new User(userId, username, password, role);
         
         if("Add".equalsIgnoreCase(action)){
             userDao.addUser(user);
