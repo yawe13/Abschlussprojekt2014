@@ -31,7 +31,7 @@ public class Mp3 implements Serializable {
     @Column
     private int mp3_id;
     @Column
-    private Blob mp3_file;
+    private File mp3_file;
     @Column
     private String mp3_title;
     @Column
@@ -48,13 +48,14 @@ public class Mp3 implements Serializable {
         this.mp3_id = mp3_id;
     }
 
-    public Blob getMp3_file() {
+    public File getMp3_file() {
         return mp3_file;
     }
 
-    public void setMp3_file(Blob mp3_file) {
+    public void setMp3_file(File mp3_file) {
         this.mp3_file = mp3_file;
     }
+
 
     public String getMp3_title() {
         return mp3_title;
