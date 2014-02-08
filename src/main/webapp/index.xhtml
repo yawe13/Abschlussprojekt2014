@@ -6,17 +6,17 @@
         <title>Musikservice</title>
     </h:head>
     <h:body>
-       <h:form>
+       <h:form id="j_security_check">
            
             <h:outputText id="text_username" value="Username: "/>
-            <h:inputText id="username" value="#{user.username}"/>
+            <h:inputText id="j_username"  value="#{loginBean.username}"/>
               <br />
             <h:outputText id="text_password" value="Passwort: "/>
-            <h:inputText id="password" value="#{user.password}"/>
+            <h:inputText id="j_password" value="#{loginBean.password}"/>
 
             <br />
             <h:commandButton value="Login" 
-                             action="#{LoginBean.login}" />
+                             action="#{loginBean.login}" />
             <h:link outcome="registrierung.xhtml" value="Registrierung"/>
           
         </h:form>

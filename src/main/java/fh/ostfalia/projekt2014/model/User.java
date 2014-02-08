@@ -27,13 +27,13 @@ import javax.persistence.Table;
 public class User implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column
+    @Column (name = "userid")
     private int userId;
-    @Column
+    @Column (name = "username")
     private String username;
-    @Column
+    @Column (name = "password")
     private String password;
-    @Column
+    @Column (name = "role")
     private String role;
 
     public int getUserId() {
