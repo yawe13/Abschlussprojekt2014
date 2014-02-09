@@ -25,7 +25,7 @@ and open the template in the editor.
                     <jsp:forEach items="${Mp3.allMp3}" var="mp3">
                         <tr>
                           <td>${mp3.mp3_title}</td>
-                          <td>${mp3.mp3_artist}</td>
+                          <td>#{Mp3Artist.getMp3ArtistName(1)}</td>
                           <td><h:link outcome="view_mp3" value="Show"><f:param name="id" value="${mp3.mp3_id}"/></h:link></td>
                           <td><h:link value="download"/></td>
                         </tr>
@@ -36,7 +36,7 @@ and open the template in the editor.
             </table>
             <h:link outcome="view_mp3" value="View Example Mp3"/>
             <br/>
-            <h:link outcome="view_author" value="View Example Author"/>
+            <h:link outcome="view_artist" value="View Example Author"/>
             <br/>
             <h:link outcome="index" value="Home"/>          
         </f:view>

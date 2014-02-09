@@ -24,8 +24,7 @@ import javax.persistence.Table;
  *
  * @author Mettbrötchen
  */
-@Entity
-@Table (name="Mp3")
+@Entity (name="Mp3")
 @NamedQueries({@NamedQuery(name="Mp3.getAll", query="SELECT e FROM Mp3 e")})
 
 public class Mp3Bean implements Serializable {
@@ -40,7 +39,7 @@ public class Mp3Bean implements Serializable {
     private String mp3_title;
     @ManyToOne
     @JoinColumn(name="mp3_artist_id")
-    private Mp3ArtistBean mp3_artist_id;
+    private Mp3ArtistBean mp3_artist;
    
     
     public Mp3Bean() {
@@ -71,10 +70,10 @@ public class Mp3Bean implements Serializable {
     }
 
     public Mp3ArtistBean getMp3_artist_id() {
-        return mp3_artist_id;
+        return mp3_artist;
     }
 
     public void setMp3_artist_id(Mp3ArtistBean mp3_artist_id) {
-        this.mp3_artist_id = mp3_artist_id;
+        this.mp3_artist = mp3_artist_id;
     }
 }

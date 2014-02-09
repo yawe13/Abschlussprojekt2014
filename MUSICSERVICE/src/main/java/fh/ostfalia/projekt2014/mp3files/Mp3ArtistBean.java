@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,8 +23,10 @@ import javax.persistence.Table;
  * @author David
  */
 
-@Entity
-@Table (name="Mp3_Artist")
+@Entity (name="Mp3Artist")
+@NamedQueries({@NamedQuery(name="Mp3Artist.getAll", query="SELECT e FROM Mp3Artist e")})
+
+
 public class Mp3ArtistBean implements Serializable {
     
     
@@ -30,8 +34,6 @@ public class Mp3ArtistBean implements Serializable {
     @Column (name="artist_id")
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int artist_id;
-    
-   
     @Column
     String artist_name;
 
@@ -43,11 +45,11 @@ public class Mp3ArtistBean implements Serializable {
         this.artist_id = artist_id;
     }
 
-    public String getArtist_name() {
+    public String getArtistName() {
         return artist_name;
     }
 
-    public void setArtist_name(String artist_name) {
+    public void setArtistName(String artist_name) {
         this.artist_name = artist_name;
     }
 }

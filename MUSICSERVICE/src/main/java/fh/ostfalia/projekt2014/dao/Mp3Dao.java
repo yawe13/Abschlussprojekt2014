@@ -52,7 +52,7 @@ public class Mp3Dao implements Mp3DaoLocal {
        
     @Override
     public List<Mp3Bean> getAllMp3() {
-        return em.createNamedQuery("Mp3.getAll").getResultList();
+        return em.createNamedQuery("Mp3bla.getAll").getResultList();
     }
     
    // Methoden zum Extrahieren der Id aus der URI, um Mp3 zu identifizieren 
