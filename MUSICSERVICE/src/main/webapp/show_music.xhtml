@@ -24,19 +24,14 @@ and open the template in the editor.
                 <tr>
                     <jsp:forEach items="${Mp3.allMp3}" var="mp3">
                         <tr>
-                          <td>${mp3.mp3_title}</td>
-                          <td>#{Mp3Artist.getMp3ArtistName(1)}</td>
-                          <td><h:link outcome="view_mp3" value="Show"><f:param name="id" value="${mp3.mp3_id}"/></h:link></td>
-                          <td><h:link value="download"/></td>
+                            <td>${mp3.mp3_title}</td>
+                            <td><h:link outcome="view_artist" value="#{Mp3Artist.getMp3ArtistName(mp3.mp3_artist.artist_id)}"><f:param name="id" value="#{mp3.mp3_artist.artist_id}"/></h:link></td>
+                            <td><h:link outcome="view_mp3" value="Show"><f:param name="id" value="${mp3.mp3_id}"/></h:link></td>
+                            <td><h:link value="download"/></td>
                         </tr>
-                        
                     </jsp:forEach>
                 </tr>
-                
             </table>
-            <h:link outcome="view_mp3" value="View Example Mp3"/>
-            <br/>
-            <h:link outcome="view_artist" value="View Example Author"/>
             <br/>
             <h:link outcome="index" value="Home"/>          
         </f:view>

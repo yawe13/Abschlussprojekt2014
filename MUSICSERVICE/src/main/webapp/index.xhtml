@@ -7,7 +7,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
-    
+
     <h:head>
         <title>Music</title>
     </h:head>
@@ -16,7 +16,11 @@ and open the template in the editor.
         <br/>
         <f:view>
             <h:button outcome="show_music" value="Show Musictitles"/>
-            
+            <br/>
+            <h:form id="form" enctype="multipart/form-data">
+                <h:inputFile id="file" value="#{Mp3.part}"/>
+                <h:commandButton value="Upload Music" action="#{Mp3.upload}"/>
+            </h:form>
         </f:view>
     </h:body>
 </html>

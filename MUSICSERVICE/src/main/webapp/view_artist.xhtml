@@ -7,19 +7,28 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:jsp="http://java.sun.com/jsp/jstl/core">
-    <jsp:set value="${Mp3.passedParameter}" var="id"/> 
+      xmlns:jsp="http://java.sun.com/jsp/jstl/core"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+    <jsp:set value="${Mp3Artist.passedParameter}" var="id"/> 
     <h:head>
-        <title>#{Mp3.getMp3_artist(id)} - #{Mp3.getMp3_title(id)}</title>
+        <title>#{Mp3Artist.getMp3ArtistName(id)}</title>
     </h:head>
     <h:body>
-        <h3>#{Mp3.getMp3_artist(id)} - #{Mp3.getMp3_title(id)}</h3>
+        <h3>#{Mp3Artist.getMp3ArtistName(id)}</h3>
         <h:form>
-            Titel des Author <h:commandLink action="#{Test.test()}" value="download"/>
+            Titel des Authoren 
+            <table>
+                <jsp:forEach items="${Mp3.allMp3}" var="mp3"> 
+                    <tr>
+                        <td>#{Mp3.getMp3ByArtist(mp3.mp3_id).getMp3_title()}</td>
+                    </tr>
+                </jsp:forEach>
+            </table>
+            <h:commandLink action="#{Mp3.allMp3}" value="download"/>
             <br/>
             <h:inputTextarea rows="5" />
             <br/>
-            <h:commandButton action="#{Test.test()}" value="Post Comment"/>    
+            <h:commandButton action="#{Mp3.allMp3}" value="Post Comment"/>    
             <br/>
         </h:form>
         <h:link outcome="index" value="Home"/>

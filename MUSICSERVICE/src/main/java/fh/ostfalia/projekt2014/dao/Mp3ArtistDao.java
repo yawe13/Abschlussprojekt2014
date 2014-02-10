@@ -9,6 +9,7 @@ package fh.ostfalia.projekt2014.dao;
 import fh.ostfalia.projekt2014.mp3files.Mp3ArtistBean;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -45,5 +46,18 @@ public class Mp3ArtistDao implements Mp3ArtistDaoLocal {
     @Override
     public List<Mp3ArtistBean> getAllMp3Artist() {
         return em.createNamedQuery("Mp3Artist.getAll").getResultList();
+    }
+    
+    private String passedParameter;
+
+    public String getPassedParameter() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        this.passedParameter = (String) facesContext.getExternalContext().
+                getRequestParameterMap().get("id");
+        return this.passedParameter;
+    }
+
+    public void setPassedParameter(String passedParameter) {
+        this.passedParameter = passedParameter;
     }
 }

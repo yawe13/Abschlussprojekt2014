@@ -20,6 +20,8 @@ public interface Mp3DaoLocal {
     void deleteMp3(int mp3_id);
     
     Mp3Bean getMp3(int mp3_id);
+    
+    Mp3Bean getMp3ByArtist (int mp3ArtistId);
 
     List<Mp3Bean> getAllMp3();
 }

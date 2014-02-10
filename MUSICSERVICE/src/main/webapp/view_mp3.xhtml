@@ -10,13 +10,10 @@ and open the template in the editor.
       xmlns:jsp="http://java.sun.com/jsp/jstl/core">
     <jsp:set value="${Mp3.passedParameter}" var="id"/> 
     <h:head>
-        <title>#{Mp3.getMp3_artist(id)} - #{Mp3.getMp3_title(id)}</title>
+        <title>#{Mp3Artist.getMp3ArtistName(Mp3.getMp3(id).getMp3_artist().artist_id)} - #{Mp3.getMp3_title(id)}</title>
     </h:head>
     <h:body>
-       
-        <h1>#{Mp3.getMp3_artist(id)} - #{Mp3.getMp3_title(id)}</h1>
-        
-        
+        <h1>#{Mp3Artist.getMp3ArtistName(Mp3.getMp3(id).getMp3_artist().artist_id)} - #{Mp3.getMp3_title(id)}</h1>
         <h:form>
             <h:commandLink action="#{Mp3.allMp3}" value="download"/>
             <br/>

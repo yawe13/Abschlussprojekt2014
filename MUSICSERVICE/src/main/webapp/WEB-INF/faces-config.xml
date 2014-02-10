@@ -6,12 +6,7 @@
    http://java.sun.com/xml/ns/javaee/web-facesconfig_2_2.xsd"
    version="2.0">
     <!-- Managed-Beans -->
-    
-    <managed-bean>
-        <managed-bean-name>Test</managed-bean-name>
-        <managed-bean-class>fh.ostfalia.projekt2014.navigator.TestBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
+
    
     <managed-bean>
         <managed-bean-name>Mp3</managed-bean-name>
