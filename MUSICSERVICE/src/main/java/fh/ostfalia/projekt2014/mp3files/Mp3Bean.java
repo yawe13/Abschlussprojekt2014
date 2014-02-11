@@ -5,13 +5,23 @@
  */
 package fh.ostfalia.projekt2014.mp3files;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.security.Identity;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.stream.FileImageInputStream;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -21,6 +31,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.servlet.http.Part;
+import sun.misc.IOUtils;
 
 /**
  *
@@ -32,22 +43,23 @@ import javax.servlet.http.Part;
 
 public class Mp3Bean implements Serializable {
 
-    @Id
-    @Column(name = "mp3_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Mp3ArtistBean mp3Artist;
     private int mp3_id;
-    @Column(name = "mp3_file")
-    @Lob
     private byte[] mp3_file;
-    @Column(name = "mp3_title")
     private String mp3_title;
-    @ManyToOne
-    @JoinColumn(name = "mp3_artist")
-    private Mp3ArtistBean mp3_artist;
 
     public Mp3Bean() {
     }
 
+    public Mp3Bean(Mp3ArtistBean mp3Artist, byte[] mp3_file, String mp3_title) {
+        this.mp3Artist = mp3Artist;
+        this.mp3_file = mp3_file;
+        this.mp3_title = mp3_title;
+    }
+
+    @Id
+    @Column(name = "mp3_id")
+    @GeneratedValue(strategy = IDENTITY)
     public int getMp3_id() {
         return mp3_id;
     }
@@ -56,6 +68,8 @@ public class Mp3Bean implements Serializable {
         this.mp3_id = mp3_id;
     }
 
+    @Column(name = "mp3_file")
+    @Lob
     public byte[] getMp3_file() {
         return mp3_file;
     }
@@ -64,6 +78,7 @@ public class Mp3Bean implements Serializable {
         this.mp3_file = mp3_file;
     }
 
+    @Column(name = "mp3_title")
     public String getMp3_title() {
         return mp3_title;
     }
@@ -73,11 +88,34 @@ public class Mp3Bean implements Serializable {
 
     }
 
-    public Mp3ArtistBean getMp3_artist() {
-        return mp3_artist;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "artist_id", nullable = false)
+    public Mp3ArtistBean getMp3ArtistBean() {
+        return this.mp3Artist;
     }
 
-    public void setMp3_artist(Mp3ArtistBean mp3_artist) {
-        this.mp3_artist = mp3_artist;
+    public void setMp3ArtistBean(Mp3ArtistBean mp3Artist) {
+        this.mp3Artist = mp3Artist;
     }
+
+    public void setMp3ByteCodeFromFile(File file) {
+
+        try {
+
+            mp3_file = new byte[(int) file.length()];
+
+            FileInputStream inputStream = new FileInputStream(file);
+            try {
+                inputStream.read(mp3_file);
+                inputStream.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Mp3Bean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Mp3Bean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 }

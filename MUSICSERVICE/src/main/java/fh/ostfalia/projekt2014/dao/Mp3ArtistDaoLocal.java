@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Local
 public interface Mp3ArtistDaoLocal {
-    void addMp3Artist(Mp3ArtistBean mp3Artist);
+    void persistMp3ArtistBean(Mp3ArtistBean mp3Artist);
     
     void deleteMp3Artist(int mp3ArtistId);
     

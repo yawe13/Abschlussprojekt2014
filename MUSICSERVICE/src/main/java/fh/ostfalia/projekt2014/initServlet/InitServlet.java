@@ -26,13 +26,14 @@ public class InitServlet implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         context = sce.getServletContext();
+        /*
         mp3List = id3.initFiles(3);
         
         Mp3Dao mp3Dao = new Mp3Dao();
         for(int i=0; i <= mp3List.size(); i++){
             Mp3Bean tempMp3Bean = mp3List.get(i);
             mp3Dao.addMp3(tempMp3Bean);
-        }
+        }*/
         
     }
 

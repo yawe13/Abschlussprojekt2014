@@ -25,12 +25,18 @@ public class Id3Tag {
 
     private MP3File mp3file;
     private final File uploadDir;
+    private Mp3Bean mp3Bean;
+    Mp3ArtistBean mp3Artist;
 
     public Id3Tag() {
+        mp3Bean = new Mp3Bean();
+        mp3Artist = new Mp3ArtistBean();
         uploadDir = new File("C:\\Users\\David\\Documents\\NetBeansProjects\\Abschlussprojekt2014\\MUSICSERVICE\\Upload");
     }
 
     public Id3Tag(String customUploadPath) {
+        mp3Bean = new Mp3Bean();
+        mp3Artist = new Mp3ArtistBean();
         uploadDir = new File(customUploadPath);
     }
 
@@ -42,6 +48,25 @@ public class Id3Tag {
     private String readTitle(File file) throws TagException, IOException {
         mp3file = new MP3File(file);
         return mp3file.getID3v1Tag().getSongTitle();
+    }
+    
+    public Mp3Bean readMp3File(File file){
+        try {
+            
+
+            mp3Artist.setArtistName(this.readArtist(file));
+            mp3Bean.setMp3_title(this.readTitle(file));
+            mp3Bean.setMp3ArtistBean(mp3Artist);
+            mp3Bean.setMp3ByteCodeFromFile(file);
+            
+            
+        } catch (TagException ex) {
+            Logger.getLogger(Id3Tag.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Id3Tag.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mp3Bean;
+        
     }
 
     public ArrayList<Mp3Bean> initFiles(int readFiles) {
@@ -69,7 +94,7 @@ public class Id3Tag {
 
                     mp3.setMp3_file(bytes);
                             
-                    mp3.setMp3_artist(mp3artist);
+                    //mp3.setMp3_artist(mp3artist);
                     mp3.setMp3_title(this.readTitle(file));
                     list.add(mp3);
                 } catch (TagException ex) {
