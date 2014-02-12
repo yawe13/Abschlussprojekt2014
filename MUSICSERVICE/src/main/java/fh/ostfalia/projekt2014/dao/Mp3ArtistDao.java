@@ -39,8 +39,6 @@ import javax.transaction.UserTransaction;
 @Stateless
 public class Mp3ArtistDao implements Mp3ArtistDaoLocal {
     @PersistenceContext
-    @PersistenceUnit
-    EntityManagerFactory emf;
     private EntityManager em;
     @Resource
     UserTransaction ut;
@@ -52,11 +50,12 @@ public class Mp3ArtistDao implements Mp3ArtistDaoLocal {
     public void persistMp3ArtistBean(Mp3ArtistBean mp3ArtistBean) {
         try {     
             System.out.println("Beginne persistMp3ArtistBean....");
-            em =  emf.createEntityManager();
+            //em =  emf.createEntityManager();
             ut.begin();
             System.out.println(mp3ArtistBean.getArtistName());
             System.out.println(mp3ArtistBean.getArtist_id());
             em.persist(mp3ArtistBean);
+            ut.commit();
             /*
             Set<Mp3Bean> mp3Beans =  mp3ArtistBean.getMp3Beans();
             Iterator<Mp3Bean> it = mp3Beans.iterator();
@@ -66,7 +65,7 @@ public class Mp3ArtistDao implements Mp3ArtistDaoLocal {
                 em.persist(tempMp3Bean);
                 System.out.println("Persistiere aktuelle Mp3Bean");
             }*/
-            ut.commit();
+            
         } catch (RollbackException ex) {
             Logger.getLogger(Mp3ArtistDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (HeuristicMixedException ex) {
