@@ -8,6 +8,7 @@ package fh.ostfalia.projekt2014.mp3files;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,7 +34,7 @@ public class Mp3ArtistBean implements Serializable {
 
     private int artist_id;
     private String artist_name;
-    private Set<Mp3Bean> mp3Beans = new HashSet<Mp3Bean>(0);
+    private Set<Mp3Bean> mp3Beans = new HashSet();
     
     public Mp3ArtistBean(){
     }
@@ -67,7 +68,7 @@ public class Mp3ArtistBean implements Serializable {
         this.artist_name = artist_name;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Mp3ArtistBean")
+    @OneToMany(cascade=CascadeType.ALL , fetch = FetchType.LAZY, mappedBy = "Mp3ArtistBean")
     public Set<Mp3Bean> getMp3Beans() {
         return this.mp3Beans;
     }

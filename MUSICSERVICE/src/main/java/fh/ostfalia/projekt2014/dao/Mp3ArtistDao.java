@@ -16,10 +16,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import javax.servlet.http.Part;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -36,30 +39,34 @@ import javax.transaction.UserTransaction;
 @Stateless
 public class Mp3ArtistDao implements Mp3ArtistDaoLocal {
     @PersistenceContext
+    @PersistenceUnit
+    EntityManagerFactory emf;
     private EntityManager em;
+    @Resource
     UserTransaction ut;
     private Id3Tag id3;
     private Part part;
+  
     
     @Override
     public void persistMp3ArtistBean(Mp3ArtistBean mp3ArtistBean) {
-        try {
-            
+        try {     
+            System.out.println("Beginne persistMp3ArtistBean....");
+            em =  emf.createEntityManager();
             ut.begin();
+            System.out.println(mp3ArtistBean.getArtistName());
+            System.out.println(mp3ArtistBean.getArtist_id());
             em.persist(mp3ArtistBean);
+            /*
             Set<Mp3Bean> mp3Beans =  mp3ArtistBean.getMp3Beans();
             Iterator<Mp3Bean> it = mp3Beans.iterator();
             Mp3Bean tempMp3Bean;
             while(it.hasNext()){
                 tempMp3Bean = it.next();
                 em.persist(tempMp3Bean);
-            }
+                System.out.println("Persistiere aktuelle Mp3Bean");
+            }*/
             ut.commit();
-          
-        } catch (NotSupportedException ex) {
-            Logger.getLogger(Mp3ArtistDao.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SystemException ex) {
-            Logger.getLogger(Mp3ArtistDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (RollbackException ex) {
             Logger.getLogger(Mp3ArtistDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (HeuristicMixedException ex) {
@@ -70,12 +77,19 @@ public class Mp3ArtistDao implements Mp3ArtistDaoLocal {
             Logger.getLogger(Mp3ArtistDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalStateException ex) {
             Logger.getLogger(Mp3ArtistDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SystemException ex) {
+            Logger.getLogger(Mp3ArtistDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotSupportedException ex) {
+            Logger.getLogger(Mp3ArtistDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+          
+        
+          
     }
      
     public void upload() throws IOException {
         id3 = new Id3Tag();
-        File file = new File("C:\\Users\\David\\Documents\\NetBeansProjects\\Abschlussprojekt2014\\MUSICSERVICE\\Upload\\"+part.getSubmittedFileName());
+        File file = new File("C:\\Users\\Yannick\\Documents\\NetBeansProjects\\MalteDavid\\Abschlussprojekt2014\\MUSICSERVICE\\Upload\\"+part.getSubmittedFileName());
         System.out.println("HIER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+file.getName());
         
         Mp3ArtistBean mp3ArtistBean;
@@ -89,7 +103,7 @@ public class Mp3ArtistDao implements Mp3ArtistDaoLocal {
         mp3ArtistBean = mp3Bean.getMp3ArtistBean();
         
         mp3ArtistBean.addMp3Bean(mp3Bean);//Zuordnung Artist->Titel(Liste von Titeln)
-         mp3ArtistDao.persistMp3ArtistBean(mp3ArtistBean);
+        
         System.out.println("DAAAAAAA!!!!!2214qwert"+mp3Bean.getMp3ArtistBean());
         
         this.persistMp3ArtistBean(mp3ArtistBean);
