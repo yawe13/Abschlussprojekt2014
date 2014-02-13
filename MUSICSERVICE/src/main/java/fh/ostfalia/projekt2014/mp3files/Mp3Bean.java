@@ -97,6 +97,13 @@ public class Mp3Bean implements Serializable {
     public void setMp3ArtistBean(Mp3ArtistBean mp3Artist) {
         this.mp3Artist = mp3Artist;
     }
+    
+    public int getArtistId(){
+        return mp3Artist.getArtist_id();
+    }
+    
+  
+    
 
     public void setMp3ByteCodeFromFile(File file) {
 

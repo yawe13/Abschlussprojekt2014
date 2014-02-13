@@ -9,11 +9,11 @@
 
    
     <managed-bean>
-        <managed-bean-name>Mp3</managed-bean-name>
+        <managed-bean-name>Mp3Dao</managed-bean-name>
         <managed-bean-class>fh.ostfalia.projekt2014.dao.Mp3BeanDao</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope></managed-bean>
     <managed-bean>
-        <managed-bean-name>Mp3Artist</managed-bean-name>
+        <managed-bean-name>Mp3ArtistDao</managed-bean-name>
         <managed-bean-class>fh.ostfalia.projekt2014.dao.Mp3ArtistDao</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>

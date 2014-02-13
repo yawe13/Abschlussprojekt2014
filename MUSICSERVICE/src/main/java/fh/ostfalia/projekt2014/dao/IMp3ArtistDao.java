@@ -20,7 +20,7 @@ public interface IMp3ArtistDao {
     
     void deleteMp3Artist(int mp3ArtistId);
     
-    Mp3ArtistBean getMp3Artist(int mp3ArtistId);
+    Mp3ArtistBean getMp3ArtistBean(int mp3ArtistId);
 
     List<Mp3ArtistBean> getAllMp3Artist();
 }

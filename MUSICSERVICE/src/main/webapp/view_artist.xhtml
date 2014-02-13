@@ -9,26 +9,30 @@ and open the template in the editor.
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:jsp="http://java.sun.com/jsp/jstl/core"
       xmlns:cc="http://xmlns.jcp.org/jsf/composite">
-    <jsp:set value="${Mp3Artist.passedParameter}" var="id"/> 
+    <jsp:set value="${Mp3ArtistDao.passedParameter}" var="id"/> 
     <h:head>
-        <title>#{Mp3Artist.getMp3ArtistName(id)}</title>
+        <title>#{Mp3ArtistDao.getMp3ArtistBean(id).getArtistName()}</title>
     </h:head>
     <h:body>
-        <h3>#{Mp3Artist.getMp3ArtistName(id)}</h3>
+        <h3>#{Mp3ArtistDao.getMp3ArtistBean(id).getArtistName()}</h3>
         <h:form>
             Titel des Authoren 
             <table>
-                <jsp:forEach items="${Mp3.allMp3}" var="mp3"> 
+                <jsp:set value="${Mp3ArtistDao.getMp3ArtistBean(id)}" var="ArtistBean"/> 
+                <jsp:forEach items="${ArtistBean.mp3Beans}" var="Mp3Bean">   
                     <tr>
-                        <td>#{Mp3.getMp3ByArtist(mp3.mp3_id).getMp3_title()}</td>
+                                 <td>
+                                     ${Mp3Bean.getMp3_title()}
+                                     
+                                 </td>
                     </tr>
                 </jsp:forEach>
             </table>
-            <h:commandLink action="#{Mp3.allMp3}" value="download"/>
+            <h:commandLink action="#{Mp3Dao.allMp3}" value="download"/>
             <br/>
             <h:inputTextarea rows="5" />
             <br/>
-            <h:commandButton action="#{Mp3.allMp3}" value="Post Comment"/>    
+            <h:commandButton action="#{Mp3Dao.allMp3}" value="Post Comment"/>    
             <br/>
         </h:form>
         <h:link outcome="index" value="Home"/>

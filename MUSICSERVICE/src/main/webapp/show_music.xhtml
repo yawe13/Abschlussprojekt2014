@@ -22,10 +22,10 @@ and open the template in the editor.
                     <th>Download</th>
                 </tr>
                 <tr>
-                    <jsp:forEach items="${Mp3.allMp3}" var="mp3">
+                    <jsp:forEach items="${Mp3Dao.allMp3}" var="mp3">
                         <tr>
                             <td>${mp3.mp3_title}</td>
-                            <td><h:link outcome="view_artist" value="#{Mp3Artist.getMp3ArtistName(mp3.mp3_artist.artist_id)}"><f:param name="id" value="#{mp3.mp3_artist.artist_id}"/></h:link></td>
+                            <td><h:link outcome="view_artist" value="#{Mp3ArtistDao.getMp3ArtistNameByMp3Id(mp3.mp3_id)}"><f:param name="id" value="#{mp3.mp3ArtistBean.artist_id}"/></h:link></td>
                             <td><h:link outcome="view_mp3" value="Show"><f:param name="id" value="${mp3.mp3_id}"/></h:link></td>
                             <td><h:link value="download"/></td>
                         </tr>
