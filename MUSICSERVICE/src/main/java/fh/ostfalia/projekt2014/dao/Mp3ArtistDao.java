@@ -70,7 +70,7 @@ public class Mp3ArtistDao implements IMp3ArtistDao {
 
     public void upload() throws IOException {
         id3 = new Id3Tag();
-        File file = new File("C:\\Users\\KingDCB\\Documents\\NetBeansProjects\\Abschlussprojekt2014\\MUSICSERVICE\\Upload\\" + part.getSubmittedFileName());
+        File file = new File("C:\\Users\\Yannick\\Documents\\NetBeansProjects\\MalteDavid\\Abschlussprojekt2014\\MUSICSERVICE\\Upload\\" + part.getSubmittedFileName());
 
         Mp3ArtistBean mp3ArtistBean;
 

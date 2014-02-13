@@ -18,8 +18,8 @@ and open the template in the editor.
             <h:button outcome="show_music" value="Show Musictitles"/>
             <br/>
             <h:form id="form" enctype="multipart/form-data">
-                <h:inputFile id="file"  value="#{Mp3Artist.part}"/>
-                <h:commandButton value="Upload Music" action="#{Mp3Artist.upload()}"/>
+                <h:inputFile id="file"  value="#{Mp3ArtistDao.part}"/>
+                <h:commandButton value="Upload Music" action="#{Mp3ArtistDao.upload()}"/>
             </h:form>
         </f:view>
     </h:body>
