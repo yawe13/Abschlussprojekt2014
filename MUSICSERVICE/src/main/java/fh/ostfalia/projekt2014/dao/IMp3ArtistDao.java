@@ -10,11 +10,12 @@ import javax.ejb.Local;
 import fh.ostfalia.projekt2014.mp3files.Mp3ArtistBean;
 import java.util.List;
 /**
- *
+ * Interface zum verwalten von Artist-Beans
+ * 
  * @author David
  */
 @Local
-public interface Mp3ArtistDaoLocal {
+public interface IMp3ArtistDao {
     void persistMp3ArtistBean(Mp3ArtistBean mp3Artist);
     
     void deleteMp3Artist(int mp3ArtistId);

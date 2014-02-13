@@ -5,7 +5,7 @@
  */
 package fh.ostfalia.projekt2014.initServlet;
 
-import fh.ostfalia.projekt2014.dao.Mp3Dao;
+import fh.ostfalia.projekt2014.dao.Mp3BeanDao;
 import fh.ostfalia.projekt2014.mp3files.Id3Tag;
 import fh.ostfalia.projekt2014.mp3files.Mp3Bean;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class InitServlet implements ServletContextListener {
         /*
         mp3List = id3.initFiles(3);
         
-        Mp3Dao mp3Dao = new Mp3Dao();
+        Mp3BeanDao mp3Dao = new Mp3BeanDao();
         for(int i=0; i <= mp3List.size(); i++){
             Mp3Bean tempMp3Bean = mp3List.get(i);
             mp3Dao.addMp3(tempMp3Bean);

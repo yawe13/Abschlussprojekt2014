@@ -14,7 +14,7 @@ import java.util.List;
  * @author David
  */
 @Local
-public interface Mp3DaoLocal {
+public interface IMp3Dao {
     void addMp3(Mp3Bean mp3);
     
     void deleteMp3(int mp3_id);

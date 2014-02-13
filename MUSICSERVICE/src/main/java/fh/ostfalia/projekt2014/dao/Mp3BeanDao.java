@@ -39,7 +39,7 @@ import sun.misc.IOUtils;
  * @author David
  */
 @Stateless
-public class Mp3Dao implements Mp3DaoLocal {
+public class Mp3BeanDao implements IMp3Dao {
     @PersistenceContext
     private EntityManager em;
     @Resource
@@ -63,17 +63,17 @@ public class Mp3Dao implements Mp3DaoLocal {
        catch(NotSupportedException e){
            e.printStackTrace();
        } catch (RollbackException ex) {
-            Logger.getLogger(Mp3Dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Mp3BeanDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (HeuristicMixedException ex) {
-            Logger.getLogger(Mp3Dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Mp3BeanDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (HeuristicRollbackException ex) {
-            Logger.getLogger(Mp3Dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Mp3BeanDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SecurityException ex) {
-            Logger.getLogger(Mp3Dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Mp3BeanDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalStateException ex) {
-            Logger.getLogger(Mp3Dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Mp3BeanDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SystemException ex) {
-            Logger.getLogger(Mp3Dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Mp3BeanDao.class.getName()).log(Level.SEVERE, null, ex);
         }   
     }
        
