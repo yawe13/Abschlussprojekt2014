@@ -10,12 +10,16 @@ import fh.ostfalia.projekt2014.mp3files.Mp3ArtistBean;
 import fh.ostfalia.projekt2014.mp3files.Mp3Bean;
 import java.io.File;
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.Part;
@@ -131,5 +135,23 @@ public class Mp3ArtistDao implements IMp3ArtistDao {
 
     public void setPart(Part part) {
         this.part = part;
+    }
+    
+    public void test(){
+        try {
+            Hashtable env = new Hashtable();
+            env.put(Context.INITIAL_CONTEXT_FACTORY,
+                    "com.sun.jndi.fscontext.RefFSContextFactory");
+
+            Context ctx = new InitialContext(env);
+            String name = "loginBean";
+            Object obj = ctx.lookup(name);
+            
+            System.out.println(obj);
+            
+            
+        } catch (NamingException ex) {
+            Logger.getLogger(Mp3ArtistDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

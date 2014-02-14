@@ -20,6 +20,7 @@ and open the template in the editor.
             <h:form id="form" enctype="multipart/form-data">
                 <h:inputFile id="file"  value="#{Mp3ArtistDao.part}"/>
                 <h:commandButton value="Upload Music" action="#{Mp3ArtistDao.upload()}"/>
+                <h:commandButton value="jndi test" action="#{Mp3ArtistDao.test()}"/>
             </h:form>
         </f:view>
     </h:body>
