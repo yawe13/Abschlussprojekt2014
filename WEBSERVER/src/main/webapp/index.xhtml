@@ -9,14 +9,14 @@
        <h:form id="j_security_check">
            
             <h:outputText id="text_username" value="Username: "/>
-            <h:inputText id="j_username"  value="#{loginBean.username}"/>
+            <h:inputText id="j_username"  value="#{LoginBean.username}"/>
               <br />
             <h:outputText id="text_password" value="Passwort: "/>
-            <h:inputText id="j_password" value="#{loginBean.password}"/>
+            <h:inputText id="j_password" value="#{LoginBean.password}"/>
 
             <br />
             <h:commandButton value="Login" 
-                             action="#{loginBean.login}" />
+                             action="#{LoginBean.login}" />
             <h:link outcome="registrierung.xhtml" value="Registrierung"/>
           
         </h:form>

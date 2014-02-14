@@ -11,7 +11,7 @@
             <h:inputText id="username" value="#{user.username}"/><br/>
             <h:outputText value="Passwort "/>
             <h:inputText id="password" value="#{user.password}"/><br/>
-            <h:commandButton value="Add User" action="Add"/>
+            <h:commandButton value="Add User" action="#{UserDao.addUser(user)}"/>
         </h:form>
     </h:body>
 </html>

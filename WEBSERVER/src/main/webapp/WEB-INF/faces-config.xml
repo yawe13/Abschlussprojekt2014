@@ -9,8 +9,8 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>loginBean</managed-bean-name>
-        <managed-bean-class>fh.ostfalia.projekt2014.webserver.LoginBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-name>UserDao</managed-bean-name>
+        <managed-bean-class>fh.ostfalia.projekt2014.dao.UserDao</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 </faces-config>
