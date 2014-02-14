@@ -27,20 +27,22 @@ public class Jndi {
     public void jndi() {
         
        
-        name="test";
+        name="loginBean";
         try {
             
             env.put(Context.INITIAL_CONTEXT_FACTORY,
                     "com.sun.jndi.fscontext.RefFSContextFactory");
 
             Context ctx = new InitialContext(env);
-            ctx.bind("loginBean", client);
-
-            //Object obj = ctx.lookup(name);
-
+            
+            //ctx.bind(name, client);
+            //ctx.rebind(name, client);
+            
+            Object obj = ctx.lookup(name);
+            
             // Print it
-            //System.out.println(name + " is bound to: " + obj);
-
+            System.out.println(name + " is bound to: " + obj);
+            ctx.close();
         } catch (NamingException e) {
             System.err.println("Problem looking up " + name + ": " + e);
         }
