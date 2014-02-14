@@ -5,17 +5,23 @@
 package fh.ostfalia.projekt2014.webserver;
 
 
+import fh.ostfalia.projekt2014.dao.UserDao;
 import java.io.Serializable;
 import java.security.Principal;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.naming.NamingException;
+import javax.naming.Reference;
+import javax.naming.Referenceable;
+import javax.naming.StringRefAddr;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-public class LoginBean implements Serializable {
+public class LoginBean implements Serializable, Referenceable {
 
   private String username;
   private String password;
+  private String loginBean;
 
     public String getUsername() {
         return username;
@@ -72,4 +78,15 @@ public class LoginBean implements Serializable {
       fc.addMessage(null, new FacesMessage("Logout failed."));
     }
   }
+
+    @Override
+    public Reference getReference() throws NamingException {
+        return new Reference(
+	    LoginBean.class.getName(),
+	    new StringRefAddr("loginBean", loginBean),
+	    LoginBeanFactory.class.getName(),
+	    null);          // Factory location
+    }
+  
+
 }

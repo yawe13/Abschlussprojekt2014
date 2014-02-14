@@ -5,11 +5,16 @@
 package fh.ostfalia.projekt2014.dao;
 
 import fh.ostfalia.projekt2014.model.User;
+import fh.ostfalia.projekt2014.webserver.Jndi;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.naming.NamingException;
+import javax.naming.Reference;
+import javax.naming.Referenceable;
+import javax.naming.StringRefAddr;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.HeuristicMixedException;
@@ -24,33 +29,35 @@ import javax.transaction.UserTransaction;
  * @author anton
  */
 @Stateless
-public class UserDao implements UserDaoLocal {
-     @PersistenceContext
+public class UserDao implements UserDaoLocal{
+
+    @PersistenceContext
     private EntityManager em;
     @Resource
     UserTransaction ut;
-    
+
+
     @Override
     public void addUser(User user) {
-         try {
-             ut.begin();
-             em.persist(user);
-             ut.commit();
-         } catch (NotSupportedException ex) {
-             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (SystemException ex) {
-             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (RollbackException ex) {
-             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (HeuristicMixedException ex) {
-             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (HeuristicRollbackException ex) {
-             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (SecurityException ex) {
-             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (IllegalStateException ex) {
-             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        try {
+            ut.begin();
+            em.persist(user);
+            ut.commit();
+        } catch (NotSupportedException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SystemException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RollbackException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (HeuristicMixedException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (HeuristicRollbackException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalStateException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -73,4 +80,11 @@ public class UserDao implements UserDaoLocal {
         return em.createNamedQuery("User.getAll").getResultList();
     }
 
+    public void test() {
+       Jndi j = new Jndi();
+       j.jndi();
+    }
+
+    
+    
 }
