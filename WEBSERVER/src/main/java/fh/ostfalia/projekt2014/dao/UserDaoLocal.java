@@ -5,24 +5,28 @@
 package fh.ostfalia.projekt2014.dao;
 
 import fh.ostfalia.projekt2014.model.User;
+import java.rmi.RemoteException;
 import java.util.List;
 import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /**
  *
  * @author anton
  */
-@Local
-public interface UserDaoLocal {
 
-    void addUser(User user);
+public interface UserDaoLocal extends Remote {
 
-    void editUser(User user);
+    void addUser(User user)throws RemoteException;
 
-    void deleteUser(int userId);
+    void editUser(User user)throws RemoteException;
 
-    User getUser(int userId);
+    void deleteUser(int userId)throws RemoteException;
 
-    List<User> getAllUsers();
+    User getUser(int userId)throws RemoteException;
+
+    List<User> getAllUsers()throws RemoteException;
+    
+    void testRMI()throws RemoteException;
     
 }

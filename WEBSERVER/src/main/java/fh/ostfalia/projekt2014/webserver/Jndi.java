@@ -6,6 +6,11 @@
 package fh.ostfalia.projekt2014.webserver;
 
 import fh.ostfalia.projekt2014.dao.UserDao;
+import java.net.MalformedURLException;
+import java.rmi.AlreadyBoundException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,32 +24,37 @@ import javax.naming.NamingException;
  */
 public class Jndi {
 
-   
     Hashtable env = new Hashtable();
     String name = new String();
-    LoginBean client = new LoginBean();
-    
-    public void jndi() {
-        
-       
-        name="loginBean";
-        try {
-            
-            env.put(Context.INITIAL_CONTEXT_FACTORY,
-                    "com.sun.jndi.fscontext.RefFSContextFactory");
+    UserDao rmiRegister;
+    //LoginBean client = new LoginBean();
 
-            Context ctx = new InitialContext(env);
-            
+    public void jndi() {
+        try {
+
+            name = "java:global/WEBSERVER/UserDao";
+
+            rmiRegister = new UserDao();
+            //env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.fscontext.RefFSContextFactory");
+
+            //Context ctx = new InitialContext(env);
+            LocateRegistry.createRegistry(1099);
+            Naming.bind("rmi://localhost/rmifi", rmiRegister);
+            System.out.println("RMI-Facade wurde registriert!");
+
             //ctx.bind(name, client);
             //ctx.rebind(name, client);
-            
-            Object obj = ctx.lookup(name);
-            
+            //Object obj = ctx.lookup(name);
             // Print it
-            System.out.println(name + " is bound to: " + obj);
-            ctx.close();
-        } catch (NamingException e) {
-            System.err.println("Problem looking up " + name + ": " + e);
+            //System.out.println(name + " is bound to: " + obj);
+            //ctx.close();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (AlreadyBoundException ex) {
+            Logger.getLogger(Jndi.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 }

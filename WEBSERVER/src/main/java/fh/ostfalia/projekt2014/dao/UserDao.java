@@ -6,10 +6,16 @@ package fh.ostfalia.projekt2014.dao;
 
 import fh.ostfalia.projekt2014.model.User;
 import fh.ostfalia.projekt2014.webserver.Jndi;
+import fh.ostfalia.projekt2014.webserver.LoginBean;
+import fh.ostfalia.projekt2014.webserver.LoginBeanFactory;
+import java.lang.annotation.Annotation;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.naming.NamingException;
 import javax.naming.Reference;
@@ -28,15 +34,21 @@ import javax.transaction.UserTransaction;
  *
  * @author anton
  */
+
 @Stateless
-public class UserDao implements UserDaoLocal{
+public class UserDao extends UnicastRemoteObject implements UserDaoLocal{
 
     @PersistenceContext
     private EntityManager em;
     @Resource
     UserTransaction ut;
+    private String userDao;
 
-
+    
+    public UserDao() throws RemoteException{
+        super();
+    }
+    
     @Override
     public void addUser(User user) {
         try {
@@ -84,6 +96,24 @@ public class UserDao implements UserDaoLocal{
        Jndi j = new Jndi();
        j.jndi();
     }
+
+    @Override
+    public Class[] value() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Class<? extends Annotation> annotationType() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void testRMI() throws RemoteException {
+        System.out.println("RMI GEHT, YOOOOOOO!!!!!");
+        
+    }
+
+
 
     
     

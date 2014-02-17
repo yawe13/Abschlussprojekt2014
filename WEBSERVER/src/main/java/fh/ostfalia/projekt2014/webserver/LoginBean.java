@@ -84,7 +84,7 @@ public class LoginBean implements Serializable, Referenceable {
         return new Reference(
 	    LoginBean.class.getName(),
 	    new StringRefAddr("loginBean", loginBean),
-	    LoginBeanFactory.class.getName(),
+	    null,
 	    null);          // Factory location
     }
   
