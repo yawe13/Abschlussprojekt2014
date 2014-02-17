@@ -97,15 +97,7 @@ public class UserDao extends UnicastRemoteObject implements UserDaoLocal{
        j.jndi();
     }
 
-    @Override
-    public Class[] value() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public Class<? extends Annotation> annotationType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public void testRMI() throws RemoteException {
