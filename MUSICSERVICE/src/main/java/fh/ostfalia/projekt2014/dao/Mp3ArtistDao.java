@@ -10,11 +10,18 @@ import fh.ostfalia.projekt2014.mp3files.Mp3ArtistBean;
 import fh.ostfalia.projekt2014.mp3files.Mp3Bean;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.ejb.EJB;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
@@ -22,6 +29,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.rmi.PortableRemoteObject;
 import javax.servlet.http.Part;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -30,11 +38,13 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+
 /**
  *
  * @author David
  */
 @Stateless
+
 public class Mp3ArtistDao implements IMp3ArtistDao {
 
     @PersistenceContext
@@ -82,7 +92,7 @@ public class Mp3ArtistDao implements IMp3ArtistDao {
         mp3Bean = id3.readMp3File(file);
         System.out.println(mp3Bean.getMp3_title());
 
-        Mp3ArtistDao mp3ArtistDao = new Mp3ArtistDao();
+        //UserDaoLocal UserDaoLocal = new UserDaoLocal();
         mp3ArtistBean = mp3Bean.getMp3ArtistBean();
 
         mp3ArtistBean.addMp3Bean(mp3Bean);//Zuordnung Artist->Titel(Liste von Titeln)
@@ -138,20 +148,13 @@ public class Mp3ArtistDao implements IMp3ArtistDao {
     }
     
     public void test(){
-        try {
-            Hashtable env = new Hashtable();
-            env.put(Context.INITIAL_CONTEXT_FACTORY,
-                    "com.sun.jndi.fscontext.RefFSContextFactory");
-
-            Context ctx = new InitialContext(env);
-            String name = "loginBean";
-            Object obj = ctx.lookup(name);
-            
-            System.out.println(obj);
-            
-            
-        } catch (NamingException ex) {
+        try {        
+            UserDaoLocal udl = UserDao.getInstance().getRmiFacade();
+            udl.testRMI();
+        } catch (RemoteException ex) {
             Logger.getLogger(Mp3ArtistDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+
     }
 }
